@@ -1,0 +1,14 @@
+/Users/danchoiniere/careerDevs/capstoneProjects/HtmlAgilityPackScraper/HtmlAgilityPackScraper/bin/Debug/netcoreapp3.0/HtmlAgilityPackScraper
+/Users/danchoiniere/careerDevs/capstoneProjects/HtmlAgilityPackScraper/HtmlAgilityPackScraper/bin/Debug/netcoreapp3.0/HtmlAgilityPackScraper.deps.json
+/Users/danchoiniere/careerDevs/capstoneProjects/HtmlAgilityPackScraper/HtmlAgilityPackScraper/bin/Debug/netcoreapp3.0/HtmlAgilityPackScraper.runtimeconfig.json
+/Users/danchoiniere/careerDevs/capstoneProjects/HtmlAgilityPackScraper/HtmlAgilityPackScraper/bin/Debug/netcoreapp3.0/HtmlAgilityPackScraper.runtimeconfig.dev.json
+/Users/danchoiniere/careerDevs/capstoneProjects/HtmlAgilityPackScraper/HtmlAgilityPackScraper/bin/Debug/netcoreapp3.0/HtmlAgilityPackScraper.dll
+/Users/danchoiniere/careerDevs/capstoneProjects/HtmlAgilityPackScraper/HtmlAgilityPackScraper/bin/Debug/netcoreapp3.0/HtmlAgilityPackScraper.pdb
+/Users/danchoiniere/careerDevs/capstoneProjects/HtmlAgilityPackScraper/HtmlAgilityPackScraper/bin/Debug/netcoreapp3.0/HtmlAgilityPack.dll
+/Users/danchoiniere/careerDevs/capstoneProjects/HtmlAgilityPackScraper/HtmlAgilityPackScraper/bin/Debug/netcoreapp3.0/System.Xml.XPath.XmlDocument.dll
+/Users/danchoiniere/careerDevs/capstoneProjects/HtmlAgilityPackScraper/HtmlAgilityPackScraper/obj/Debug/netcoreapp3.0/HtmlAgilityPackScraper.csprojAssemblyReference.cache
+/Users/danchoiniere/careerDevs/capstoneProjects/HtmlAgilityPackScraper/HtmlAgilityPackScraper/obj/Debug/netcoreapp3.0/HtmlAgilityPackScraper.AssemblyInfoInputs.cache
+/Users/danchoiniere/careerDevs/capstoneProjects/HtmlAgilityPackScraper/HtmlAgilityPackScraper/obj/Debug/netcoreapp3.0/HtmlAgilityPackScraper.AssemblyInfo.cs
+/Users/danchoiniere/careerDevs/capstoneProjects/HtmlAgilityPackScraper/HtmlAgilityPackScraper/obj/Debug/netcoreapp3.0/HtmlAgilityPackScraper.csproj.CopyComplete
+/Users/danchoiniere/careerDevs/capstoneProjects/HtmlAgilityPackScraper/HtmlAgilityPackScraper/obj/Debug/netcoreapp3.0/HtmlAgilityPackScraper.dll
+/Users/danchoiniere/careerDevs/capstoneProjects/HtmlAgilityPackScraper/HtmlAgilityPackScraper/obj/Debug/netcoreapp3.0/HtmlAgilityPackScraper.pdb
