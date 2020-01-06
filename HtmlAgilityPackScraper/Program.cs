@@ -23,8 +23,13 @@ namespace HtmlAgilityPackScraper
 
              List<HtmlNode> nodes = document.DocumentNode.SelectNodes("//tr").ToList();
              nodes.RemoveRange(0, 3);
-             
-                         string connection =
+
+             InjectData(nodes);
+         }
+
+         private static void InjectData(List<HtmlNode> nodes)
+         {
+             string connection =
                 @"Server=tcp:finance-scraper.database.windows.net,1433;Initial Catalog=CoinMarketCap;Persist Security Info=False;User ID=Dan;Password=iLOVEcareerdevs1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
             using (SqlConnection dbConnection = new SqlConnection(connection))
@@ -34,9 +39,7 @@ namespace HtmlAgilityPackScraper
                 foreach (HtmlNode item in nodes)
                 {
                     string[] splitData = item.InnerText.Split('$');
-                    // foreach (var word in splitData)
-                    //     Console.WriteLine(word);
-                 
+
                     string currency = Regex.Replace(splitData[0], @"[\d-]", string.Empty);
                     string marketCap = "$" + splitData[1];
                     string price = "$" + splitData[2];
@@ -49,7 +52,6 @@ namespace HtmlAgilityPackScraper
                     SqlCommand insertCommand = new SqlCommand(
                         "INSERT into dbo.CryptoData (DateTimeScraped, Currency, MarketCap, Price, Volume, PriceChange) VALUES (@dateTime, @currency, @marketCap, @price, @volume, @priceChange)",
                         dbConnection);
-                    
                     insertCommand.Parameters.AddWithValue("@dateTime", DateTime.Now);
                     insertCommand.Parameters.AddWithValue("@currency", currency);
                     insertCommand.Parameters.AddWithValue("@marketCap", marketCap);
@@ -63,8 +65,6 @@ namespace HtmlAgilityPackScraper
                 Console.WriteLine("Data Collection Successful");
                 dbConnection.Close();
             }
-             
-             
          }
      }
 }
