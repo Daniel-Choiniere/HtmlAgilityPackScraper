@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/danchoiniere/careerDevs/capstoneProjects/HtmlAgilityPackScraper/HtmlAgilityPackScraper/HtmlAgilityPackScraper.csproj": {}
+    "/Users/danchoiniere/careerDevs/cSharpInCLass/HtmlAgilityPackScraper/HtmlAgilityPackScraper/HtmlAgilityPackScraper.csproj": {}
   },
   "projects": {
-    "/Users/danchoiniere/careerDevs/capstoneProjects/HtmlAgilityPackScraper/HtmlAgilityPackScraper/HtmlAgilityPackScraper.csproj": {
+    "/Users/danchoiniere/careerDevs/cSharpInCLass/HtmlAgilityPackScraper/HtmlAgilityPackScraper/HtmlAgilityPackScraper.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/danchoiniere/careerDevs/capstoneProjects/HtmlAgilityPackScraper/HtmlAgilityPackScraper/HtmlAgilityPackScraper.csproj",
+        "projectUniqueName": "/Users/danchoiniere/careerDevs/cSharpInCLass/HtmlAgilityPackScraper/HtmlAgilityPackScraper/HtmlAgilityPackScraper.csproj",
         "projectName": "HtmlAgilityPackScraper",
-        "projectPath": "/Users/danchoiniere/careerDevs/capstoneProjects/HtmlAgilityPackScraper/HtmlAgilityPackScraper/HtmlAgilityPackScraper.csproj",
+        "projectPath": "/Users/danchoiniere/careerDevs/cSharpInCLass/HtmlAgilityPackScraper/HtmlAgilityPackScraper/HtmlAgilityPackScraper.csproj",
         "packagesPath": "/Users/danchoiniere/.nuget/packages/",
-        "outputPath": "/Users/danchoiniere/careerDevs/capstoneProjects/HtmlAgilityPackScraper/HtmlAgilityPackScraper/obj/",
+        "outputPath": "/Users/danchoiniere/careerDevs/cSharpInCLass/HtmlAgilityPackScraper/HtmlAgilityPackScraper/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"

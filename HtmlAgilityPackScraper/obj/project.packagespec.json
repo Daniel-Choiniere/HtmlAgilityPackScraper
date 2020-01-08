@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "/Users/danchoiniere/careerDevs/capstoneProjects/HtmlAgilityPackScraper/HtmlAgilityPackScraper/HtmlAgilityPackScraper.csproj",
+    "projectUniqueName": "/Users/danchoiniere/careerDevs/cSharpInCLass/HtmlAgilityPackScraper/HtmlAgilityPackScraper/HtmlAgilityPackScraper.csproj",
     "projectName": "HtmlAgilityPackScraper",
-    "projectPath": "/Users/danchoiniere/careerDevs/capstoneProjects/HtmlAgilityPackScraper/HtmlAgilityPackScraper/HtmlAgilityPackScraper.csproj",
-    "outputPath": "/Users/danchoiniere/careerDevs/capstoneProjects/HtmlAgilityPackScraper/HtmlAgilityPackScraper/obj/",
+    "projectPath": "/Users/danchoiniere/careerDevs/cSharpInCLass/HtmlAgilityPackScraper/HtmlAgilityPackScraper/HtmlAgilityPackScraper.csproj",
+    "outputPath": "/Users/danchoiniere/careerDevs/cSharpInCLass/HtmlAgilityPackScraper/HtmlAgilityPackScraper/obj/",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
