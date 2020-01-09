@@ -23,25 +23,13 @@ namespace HtmlAgilityPackScraper
 
              List<HtmlNode> nodes = document.DocumentNode.SelectNodes("//td").ToList();
              
-             // foreach (var node in nodes)
-             // {
-             //     Console.WriteLine(node.InnerText);
-             // }
-             var chunked = ChunkIt(nodes, 5);
+             var chunked = ChunkIt(nodes, 9);
 
              for (var i = 0; i < chunked.Count; i++)
              {
-                 Console.WriteLine(chunked[i][i].InnerText);
+                 Console.WriteLine(chunked[i][1].InnerText);
              }
-             
-             // foreach (var chunk in chunked)
-             // {
-             //     foreach (var subChunk in chunk)
-             //     {
-             //         Console.WriteLine(subChunk.InnerText);
-             //     }
-             // }
-             
+
              InjectData(nodes);
          }
          
