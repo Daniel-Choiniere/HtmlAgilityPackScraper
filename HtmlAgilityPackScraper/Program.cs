@@ -22,17 +22,9 @@ namespace HtmlAgilityPackScraper
              HtmlDocument document = web.Load(url);
 
              List<HtmlNode> nodes = document.DocumentNode.SelectNodes("//td").ToList();
-             
-             var chunked = ChunkIt(nodes, 9);
-
-             for (var i = 0; i < chunked.Count; i++)
-             {
-                 Console.WriteLine(chunked[i][1].InnerText);
-             }
 
              InjectData(nodes);
          }
-         
          
          public static List<List<T>> ChunkIt<T>(List<T> nodes, int size)
          {
@@ -55,7 +47,6 @@ namespace HtmlAgilityPackScraper
              return chunks;
          }
          
-         
          private static void InjectData(List<HtmlNode> nodes)
          {
              string connection =
@@ -65,56 +56,40 @@ namespace HtmlAgilityPackScraper
             {
                 dbConnection.Open();
                 
-                foreach (HtmlNode node in nodes)
-                {
-                    // Console.WriteLine(node.InnerText);
+                    var chunked = ChunkIt(nodes, 9);
+
+                    for (var i = 0; i < chunked.Count; i++)
+                    {
+                        string currency = chunked[i][1].InnerText;
+                        string marketCap = chunked[i][2].InnerText;
+                        string price = chunked[i][3].InnerText;
+                        string volume = chunked[i][4].InnerText;
+                        string circulatingSupply = chunked[i][5].InnerText;
+                        string priceChange = chunked[i][6].InnerText;
+                        
+                        // Console.WriteLine(chunked[i][1].InnerText);
+                        // Console.WriteLine(chunked[i][2].InnerText);
+                        // Console.WriteLine(chunked[i][3].InnerText);
+                        // Console.WriteLine(chunked[i][4].InnerText);
+                        // Console.WriteLine(chunked[i][5].InnerText);
+                        // Console.WriteLine(chunked[i][6].InnerText);
+                        
+                        SqlCommand insertCommand = new SqlCommand(
+                            "INSERT into dbo.CryptoData (DateTimeScraped, Currency, MarketCap, Price, Volume, circulatingSupply, PriceChange) VALUES (@dateTime, @currency, @marketCap, @price, @volume, @circulatingSupply, @priceChange)",
+                            dbConnection);
+                        insertCommand.Parameters.AddWithValue("@dateTime", DateTime.Now);
+                        insertCommand.Parameters.AddWithValue("@currency", currency);
+                        insertCommand.Parameters.AddWithValue("@marketCap", marketCap);
+                        insertCommand.Parameters.AddWithValue("@price", price);
+                        insertCommand.Parameters.AddWithValue("@volume", volume);
+                        insertCommand.Parameters.AddWithValue("@circulatingSupply", circulatingSupply);
+                        insertCommand.Parameters.AddWithValue("@priceChange", priceChange);
+                        
+                        insertCommand.ExecuteNonQuery();
+                    }
                     
-                    // string[] splitData = node.InnerText.Split('$');
-                    //
-                    // string currency = Regex.Replace(splitData[0], @"[\d-]", string.Empty);
-                    // string marketCap = "$" + splitData[1];
-                    // string price = "$" + splitData[2];
-                    // string volume = "0";    
-                    //
-                    // string[] splitFurtherData = splitData[3].Split(" ");
-                    //
-                    // string[] splitVolume = splitFurtherData[0].Split(",");
-                    // foreach (string numberSet in splitVolume)
-                    // {
-                    //     if (numberSet.Length > 3)
-                    //     {
-                    //         string volumeLastNumbers = numberSet.Substring(0, 3);
-                    //         string circulatingSupplyFirstNumbers = numberSet.Substring(3);
-                    //         
-                    //         // Console.WriteLine("LastNumber: " +  volumeLastNumbers);
-                    //
-                    //         volume = splitVolume[0] + "," + splitVolume[1] + "," + splitVolume[2] + "," +
-                    //                         volumeLastNumbers;
-                    //         
-                    //         Console.WriteLine(volume);
-                    //         // Console.WriteLine("Circulating Supply: " + circulatingSupplyFirstNumbers);
-                    //     }
-                    //
-                    //     volume = "5";
-                    // }
-                    //
-                    // string priceChange = Regex.Replace(splitFurtherData[1], "[^0-9.%]", "");
-                    
-                    // SqlCommand insertCommand = new SqlCommand(
-                    //     "INSERT into dbo.CryptoData (DateTimeScraped, Currency, MarketCap, Price, Volume, PriceChange) VALUES (@dateTime, @currency, @marketCap, @price, @volume, @priceChange)",
-                    //     dbConnection);
-                    // insertCommand.Parameters.AddWithValue("@dateTime", DateTime.Now);
-                    // insertCommand.Parameters.AddWithValue("@currency", currency);
-                    // insertCommand.Parameters.AddWithValue("@marketCap", marketCap);
-                    // insertCommand.Parameters.AddWithValue("@price", price);
-                    // insertCommand.Parameters.AddWithValue("@volume", volume);
-                    // insertCommand.Parameters.AddWithValue("@priceChange", priceChange);
-                    //
-                    // insertCommand.ExecuteNonQuery();
-                }
-                
-                Console.WriteLine("Data Collection Successful");
-                dbConnection.Close();
+                    Console.WriteLine("Data Collection Successful");
+                    dbConnection.Close();
             }
          }
      }
