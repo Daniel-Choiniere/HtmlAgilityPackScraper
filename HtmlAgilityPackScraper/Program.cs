@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 using Microsoft.Data.SqlClient;
 
 namespace HtmlAgilityPackScraper
 {
-     class Program
+    internal static class Program
      {
          static void Main(string[] args)
          {
@@ -25,8 +24,8 @@ namespace HtmlAgilityPackScraper
 
              InjectData(nodes);
          }
-         
-         public static List<List<T>> ChunkIt<T>(List<T> nodes, int size)
+
+         private static List<List<T>> ChunkIt<T>(List<T> nodes, int size)
          {
              var chunks = new List<List<T>>();
              var count = 0;
@@ -52,45 +51,36 @@ namespace HtmlAgilityPackScraper
              string connection =
                 @"Server=tcp:finance-scraper.database.windows.net,1433;Initial Catalog=CoinMarketCap;Persist Security Info=False;User ID=Dan;Password=iLOVEcareerdevs1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
-            using (SqlConnection dbConnection = new SqlConnection(connection))
-            {
-                dbConnection.Open();
+             using SqlConnection dbConnection = new SqlConnection(connection);
+             dbConnection.Open();
                 
-                    var chunked = ChunkIt(nodes, 9);
+             var chunked = ChunkIt(nodes, 9);
 
-                    for (var i = 0; i < chunked.Count; i++)
-                    {
-                        string currency = chunked[i][1].InnerText;
-                        string marketCap = chunked[i][2].InnerText;
-                        string price = chunked[i][3].InnerText;
-                        string volume = chunked[i][4].InnerText;
-                        string circulatingSupply = chunked[i][5].InnerText;
-                        string priceChange = chunked[i][6].InnerText;
+             foreach (var data in chunked)
+             {
+                 string currency = data[1].InnerText;
+                 string marketCap = data[2].InnerText;
+                 string price = data[3].InnerText;
+                 string volume = data[4].InnerText;
+                 string circulatingSupply = data[5].InnerText;
+                 string priceChange = data[6].InnerText;
+
+                 SqlCommand insertCommand = new SqlCommand(
+                     "INSERT into dbo.CryptoData (DateTimeScraped, Currency, MarketCap, Price, Volume, circulatingSupply, PriceChange) VALUES (@dateTime, @currency, @marketCap, @price, @volume, @circulatingSupply, @priceChange)",
+                     dbConnection);
+                 insertCommand.Parameters.AddWithValue("@dateTime", DateTime.Now);
+                 insertCommand.Parameters.AddWithValue("@currency", currency);
+                 insertCommand.Parameters.AddWithValue("@marketCap", marketCap);
+                 insertCommand.Parameters.AddWithValue("@price", price);
+                 insertCommand.Parameters.AddWithValue("@volume", volume);
+                 insertCommand.Parameters.AddWithValue("@circulatingSupply", circulatingSupply);
+                 insertCommand.Parameters.AddWithValue("@priceChange", priceChange);
                         
-                        // Console.WriteLine(chunked[i][1].InnerText);
-                        // Console.WriteLine(chunked[i][2].InnerText);
-                        // Console.WriteLine(chunked[i][3].InnerText);
-                        // Console.WriteLine(chunked[i][4].InnerText);
-                        // Console.WriteLine(chunked[i][5].InnerText);
-                        // Console.WriteLine(chunked[i][6].InnerText);
-                        
-                        SqlCommand insertCommand = new SqlCommand(
-                            "INSERT into dbo.CryptoData (DateTimeScraped, Currency, MarketCap, Price, Volume, circulatingSupply, PriceChange) VALUES (@dateTime, @currency, @marketCap, @price, @volume, @circulatingSupply, @priceChange)",
-                            dbConnection);
-                        insertCommand.Parameters.AddWithValue("@dateTime", DateTime.Now);
-                        insertCommand.Parameters.AddWithValue("@currency", currency);
-                        insertCommand.Parameters.AddWithValue("@marketCap", marketCap);
-                        insertCommand.Parameters.AddWithValue("@price", price);
-                        insertCommand.Parameters.AddWithValue("@volume", volume);
-                        insertCommand.Parameters.AddWithValue("@circulatingSupply", circulatingSupply);
-                        insertCommand.Parameters.AddWithValue("@priceChange", priceChange);
-                        
-                        insertCommand.ExecuteNonQuery();
-                    }
+                 insertCommand.ExecuteNonQuery();
+             }
                     
-                    Console.WriteLine("Data Collection Successful");
-                    dbConnection.Close();
-            }
+             Console.WriteLine("Data Collection Successful");
+             dbConnection.Close();
          }
      }
 }
