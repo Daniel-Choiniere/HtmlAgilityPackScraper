@@ -4,6 +4,7 @@
     <e p="$PROJECT_DIR$" t="IncludeFlat">
       <e p="HtmlAgilityPackScraper" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
+        <e p="Crypto.cs" t="Include" />
         <e p="GetData.cs" t="Include" />
         <e p="HtmlAgilityPackScraper.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">

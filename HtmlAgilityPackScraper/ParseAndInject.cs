@@ -40,23 +40,26 @@ namespace HtmlAgilityPackScraper
 
              foreach (var data in chunked)
              {
-                 string currency = data[1].InnerText;
-                 string marketCap = data[2].InnerText;
-                 string price = data[3].InnerText;
-                 string volume = data[4].InnerText;
-                 string circulatingSupply = data[5].InnerText;
-                 string priceChange = data[6].InnerText;
+                 Crypto cryptoData = new Crypto
+                 {
+                     currency = data[1].InnerText,
+                     marketCap = data[2].InnerText,
+                     price = data[3].InnerText,
+                     volume = data[4].InnerText,
+                     circulatingSupply = data[5].InnerText,
+                     priceChange = data[6].InnerText
+                 };
 
                  SqlCommand insertCommand = new SqlCommand(
                      "INSERT into dbo.CryptoData (DateTimeScraped, Currency, MarketCap, Price, Volume, circulatingSupply, PriceChange) VALUES (@dateTime, @currency, @marketCap, @price, @volume, @circulatingSupply, @priceChange)",
                      dbConnection);
                  insertCommand.Parameters.AddWithValue("@dateTime", DateTime.Now);
-                 insertCommand.Parameters.AddWithValue("@currency", currency);
-                 insertCommand.Parameters.AddWithValue("@marketCap", marketCap);
-                 insertCommand.Parameters.AddWithValue("@price", price);
-                 insertCommand.Parameters.AddWithValue("@volume", volume);
-                 insertCommand.Parameters.AddWithValue("@circulatingSupply", circulatingSupply);
-                 insertCommand.Parameters.AddWithValue("@priceChange", priceChange);
+                 insertCommand.Parameters.AddWithValue("@currency", cryptoData.currency);
+                 insertCommand.Parameters.AddWithValue("@marketCap", cryptoData.marketCap);
+                 insertCommand.Parameters.AddWithValue("@price", cryptoData.price);
+                 insertCommand.Parameters.AddWithValue("@volume", cryptoData.volume);
+                 insertCommand.Parameters.AddWithValue("@circulatingSupply", cryptoData.circulatingSupply);
+                 insertCommand.Parameters.AddWithValue("@priceChange", cryptoData.priceChange);
                         
                  insertCommand.ExecuteNonQuery();
              }
